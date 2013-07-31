@@ -8,8 +8,6 @@
 #########################################
 
 ## Configuration section
-# WiFi interface name
-interface="wlan0"
 # NAC username
 username=""
 # NAC password
@@ -37,12 +35,11 @@ if [ "$authredurl" != "" ]; then
 	index="7"
 	pm=""
 	session=$s3
-	userip=$(ifconfig $interface | grep "inet addr" | sed -e 's| *inet addr:||' -e 's| [A-Za-z0-9:. ]*||')
 	uri="http://www.google.com/"
 	reqfrom="perfigo_login.jsp"
 	cm=""
 
-	fullstring="username=$username&password=$password&provider=$provider&guestUserNameLabel=$guestusernamelabel&guestPasswordLabel=$guestpasswordlabel&passwordLabel=$passwordlabel&userNameLabel=$usernamelabel&registerGuest=$registerguest&compact=$compact&pageid=$pageid&index=$index&pm=$pm&session=$session&userip=$userip&cm=$cm&uri=$uri&reqFrom=$reqfrom"
+	fullstring="username=$username&password=$password&provider=$provider&guestUserNameLabel=$guestusernamelabel&guestPasswordLabel=$guestpasswordlabel&passwordLabel=$passwordlabel&userNameLabel=$usernamelabel&registerGuest=$registerguest&compact=$compact&pageid=$pageid&index=$index&pm=$pm&session=$session&userip=&cm=$cm&uri=$uri&reqFrom=$reqfrom"
 
 	# SENDING AUTHORIZATION
 	status=$(curl -k -s --max-time 60 --connect-timeout 30 -A "Mozilla/4.0" -d "$fullstring" https://$domain/auth/perfigo_cm_validate.jsp)
