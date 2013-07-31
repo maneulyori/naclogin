@@ -16,7 +16,7 @@ password=""
 provider="LDAP"
 
 ## Script
-logger -i -s "naclogin: starting authorization"
+logger -i -s "naclogin: starting authentication"
 # get address for authentication
 authredurl=$(curl -k -s http://www.google.com | grep -o URL=.*\</head | sed -e 's#URL=##' -e "s#'></head##")
 if [ "$authredurl" != "" ]; then
@@ -42,7 +42,7 @@ if [ "$authredurl" != "" ]; then
 
 	fullstring="username=$username&password=$password&provider=$provider&guestUserNameLabel=$guestusernamelabel&guestPasswordLabel=$guestpasswordlabel&passwordLabel=$passwordlabel&userNameLabel=$usernamelabel&registerGuest=$registerguest&compact=$compact&pageid=$pageid&index=$index&pm=$pm&session=$session&userip=&cm=$cm&uri=$uri&reqFrom=$reqfrom&remove_old=remove_old"
 
-	# SENDING AUTHORIZATION
+	# sending authentication
 	status=$(curl -k -s --max-time 60 --connect-timeout 30 -A "Mozilla/4.0" -d "$fullstring" https://$domain/auth/perfigo_cm_validate.jsp)
 	if [[ $(echo $status | grep "<META http-equiv='refresh' content='4;URL=http://www.google.com/'>") ]]; then
 		logger -i -s "naclogin: logged in"
