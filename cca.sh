@@ -38,8 +38,9 @@ if [ "$authredurl" != "" ]; then
 	uri="http://www.google.com/"
 	reqfrom="perfigo_login.jsp"
 	cm=""
+	remove_old=1
 
-	fullstring="username=$username&password=$password&provider=$provider&guestUserNameLabel=$guestusernamelabel&guestPasswordLabel=$guestpasswordlabel&passwordLabel=$passwordlabel&userNameLabel=$usernamelabel&registerGuest=$registerguest&compact=$compact&pageid=$pageid&index=$index&pm=$pm&session=$session&userip=&cm=$cm&uri=$uri&reqFrom=$reqfrom"
+	fullstring="username=$username&password=$password&provider=$provider&guestUserNameLabel=$guestusernamelabel&guestPasswordLabel=$guestpasswordlabel&passwordLabel=$passwordlabel&userNameLabel=$usernamelabel&registerGuest=$registerguest&compact=$compact&pageid=$pageid&index=$index&pm=$pm&session=$session&userip=&cm=$cm&uri=$uri&reqFrom=$reqfrom&remove_old=remove_old"
 
 	# SENDING AUTHORIZATION
 	status=$(curl -k -s --max-time 60 --connect-timeout 30 -A "Mozilla/4.0" -d "$fullstring" https://$domain/auth/perfigo_cm_validate.jsp)
