@@ -1,0 +1,17 @@
+#!/bin/bash
+# NetworkManager script for NAC Login
+# Enter the WiFi interface here
+netif=""
+# Enter the NAC protected network's SSID here
+ESSID=""
+# Enter the full path to the script here
+scriptpath=""
+
+interface=$1 status=$2
+if [[ $interface == $netif ]]; then
+	if [[ $status == up ]]; then
+		if iwgetid | grep -qsi ":\"$ESSID\""; then
+			$scriptpath
+		fi
+	fi
+fi
