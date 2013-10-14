@@ -1,7 +1,7 @@
 naclogin
 ========
 
-Cisco NAC login script.
+Cisco NAC login script (cca.sh) and Cisco Guest Access login script (guest.sh).
 
 ---
 
